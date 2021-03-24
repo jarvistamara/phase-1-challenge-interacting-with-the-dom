@@ -2,8 +2,8 @@
 
 If you open up index.html in the browser, you'll find a small application. It has a few features:
 
-* A Counter that increases by 1 each second
-* Plus and Minus buttons that increment or decrement the counter
+* A element that increases by 1 each second
+* Plus and Minus buttons that increment or decrement the element
 * A 'like' button (❤️) that adds a 'like' for the number that is currently
   displayed by the timer
 * A comment box that adds comments when submitted
@@ -30,18 +30,18 @@ functionality working as you build.
 
 * As a user, I should see the timer increment every second once the page has
    loaded.
-* As a user, I can manually increment and decrement the counter using the plus
+* As a user, I can manually increment and decrement the element using the plus
    and minus buttons.
-* As a user, I can 'like' an individual number of the counter. I should see the
+* As a user, I can 'like' an individual number of the element. I should see the
    count of the number of 'likes' associated with that number displayed.
-* As a user, I can pause the counter, which should:
+* As a user, I can pause the element, which should:
 
-   * pause the counter
+   * pause the element
    * disable all buttons except the pause button
    * switch the label on the button from "pause" to "resume"
   
 * As a user, I should be able to click the "restart" button to restart the
-   counter and re-enable the buttons.
+   element and re-enable the buttons.
 * As a user, I can leave comments on my gameplay, such as: "Wow, what a fun
    game this is."
 
