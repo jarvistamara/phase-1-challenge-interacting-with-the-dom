@@ -1,74 +1,61 @@
-document.addEventListener("DOMContentLoaded", () => {
-    
-    let plus = document.getElementById("plus")
-    let minus = document.getElementById("minus")
-    let pause = document.getElementById("pause")
-    let element = document.getElementById("element")
-    let seconds = 0
+document.addEventListener('DOMContentLoaded', () => {
+
+    let element = document.getElementById('counter')
+    let plus = document.getElementById('plus')
+    let minus = document.getElementById('minus')
+    let heart = document.getElementById('heart')
+    let pause = document.getElementById('pause')
+    let likes = document.getElementById('likes')
     let submit = document.getElementById("submit")
     let commentForm = document.getElementById("comment-form")
     let list = document.getElementById("list")
     let commentInput = document.getElementById("comment-input")
-    let likes = document.getElementsByClassName("likes")[0]
-    let heart = document.getElementById("heart")
-    
-    let toggle = true
-    let count = setInterval(increment, 1000);
+    plus.addEventListener('click', incrementSeconds);
+    minus.addEventListener('click', decrementSeconds);
+    submit.addEventListener("submit", handleSubmit)
+    pause.addEventListener("click", handlePause)
+    heart.addEventListener("click", handleHeart)
+})
 
-// HEART //
-    
-    heart.addEventListener("click", function(e){
-        e.preventDefault()
-        newLi = document.createElement("li")
-        newLi.innerHTML = `${seconds} has been liked`
+let interval = setInterval(incrementSeconds, 1000)
 
-        likes.appendChild(newLi)
+function incrementSeconds() {
+    let time = element.innerText
+    time = parseInt(time)+1
+    element.innerText = time
+    }
 
+function decrementSeconds() {
+    let time = element.innerText
+    time = parseInt(time)-1
+    element.innerText = time
+    }
 
-    })
-    
-// PAUSE //
-
-   pause.addEventListener("click", function() {
+function handlePause() {
     if (pause.innerText == `pause`) {
-        clearInterval(count)
-    pause.innerText = `play`
+        clearInterval(interval)
+        pause.innerText = `play`
     } else {
-    pause.innerText = `pause`
-    count = setInterval(increment, 1000)
+        pause.innerText = `pause`
+        setInterval(incrementSeconds, 1000)
     }
-   })
+   }
 
-    function increment() {
-    
-    seconds++ 
-    element.innerText = seconds
-    }
-// PLUS
-    plus.addEventListener("click", function() {
-        seconds = seconds + 1
-        element.innerText = seconds
-    
-    
-    })
-//MINUS
-    minus.addEventListener("click", function(){
+function handleHeart(e){
+    e.preventDefault()
+    newLi = document.createElement("li")
+    newLi.dataset.count = 1
+    newLi.dataset.time = element.innerText
+    let likes = document.querySelector('.likes')
+    newLi.innerHTML = `${newLi.dataset.time} has been liked ${newLi.dataset.count} times`
+    likes.appendChild(newLi)
 
-        seconds = seconds - 1
-        element.innerText = seconds
-
-    })
-//SUBMIT
-    submit.addEventListener("click", function(e){
-        e.preventDefault()
-        comment = commentInput.value
-        newLi = document.createElement("li")
-        newLi.innerText = `${comment}`
-        list.appendChild(newLi)
-    })
-
-
-});
-
-
-
+}
+function handleSubmit(e) {
+    e.preventDefault()
+    comment = commentInput.value
+    newLi = document.createElement("li")
+    newLi.innerText = `${comment}`
+    list.appendChild(newLi)
+    console.log('submit')
+}
